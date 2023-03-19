@@ -22,7 +22,6 @@ const Outside = () => {
 
   //status background
   const status = useSelector((state) => state.status);
-  console.log(status);
   //weather noti
   const isWeather = useSelector((state) => state.weather);
 
