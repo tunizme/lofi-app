@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import { Backgrounds } from "../Context";
-const StatusBackground = ({ status = false, isRain = false, place }) => {
+import { useSelector } from "react-redux";
+const StatusBackground = ({ isRain = false, place }) => {
+  const status = useSelector((state) => state.status);
+  console.log(status);
   const { DataBackgrounds } = useContext(Backgrounds);
   return (
     <>
       <div
-        className={`d-${isRain ? "none" : "block"} ${
-          status ? "opacity-1" : "opacity-0"
+        className={`d-${isRain ? "none" : "block"} opacity-${
+          status ? "1" : "0"
         } scene position-absolute`}
       >
         <video
@@ -21,8 +24,8 @@ const StatusBackground = ({ status = false, isRain = false, place }) => {
         />
       </div>
       <div
-        className={`d-${isRain ? "none" : "block"} ${
-          status ? "opacity-0" : "opacity-1"
+        className={`d-${isRain ? "none" : "block"} opacity-${
+          status ? "0" : "1"
         } scene position-absolute`}
       >
         <video

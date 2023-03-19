@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const today = new Date();
-const initialState = today.getHours() < 18 ? "true" : "false";
-
+const initialState = today.getHours() < 18 ? true : false;
 const statusSlice = createSlice({
   name: "status",
   initialState: initialState,

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import Gettime from "../components/Gettime";
 import AudioControl from "../components/AudioControl";
 import Tooltip from "@mui/material/Tooltip";
@@ -14,8 +14,6 @@ import { setWeather } from "../Slice/WeatherSlice";
 import { setMuteAll } from "../Slice/MuteAllSlice";
 
 const Header = () => {
-  const input = useRef();
-
   //handle full screen
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -26,7 +24,6 @@ const Header = () => {
   };
 
   //handle change background
-  // const [status, setStatus] = useState(false);
   const status = useSelector((state) => state.status);
   const dispatch = useDispatch();
   const handleStatus = () => {
@@ -46,7 +43,6 @@ const Header = () => {
     const action = setMuteAll();
     dispatch(action);
   };
-
   return (
     <div className="header position-absolute w-100">
       <div className="container-xxl">
@@ -70,7 +66,6 @@ const Header = () => {
                 <div className="toggle d-flex align-items-center justify-content-center">
                   <input
                     onChange={handleStatus}
-                    ref={input}
                     type="checkbox"
                     id="switch"
                     checked={!!status}
