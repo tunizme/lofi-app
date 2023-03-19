@@ -42,7 +42,9 @@ const Weather = ({ display }) => {
           lang: "vi",
         },
       })
-      .then((res) => setDataWeather(res.data))
+      .then((res) => {
+        setTimeout(() => setDataWeather(res.data), 1000);
+      })
       .catch(() => setDataWeather([]));
   }, []);
 
