@@ -1,0 +1,14 @@
+{
+  "outside": {
+    "src": "../assets/videos/outside.mp4",
+    "src_night": "../assets/videos/outside-night.mp4",
+    "src_rain": "../assets/videos/outside-rain.mp4",
+    "src_rain_night": "../assets/videos/outside-night-rain.mp4"
+  },
+  "inside": {
+    "src": "../assets/videos/inside.mp4",
+    "src_night": "../assets/videos/inside-night.mp4",
+    "src_rain": "../assets/videos/inside-rain.mp4",
+    "src_rain_night": "../assets/videos/inside-night-rain.mp4"
+  }
+}

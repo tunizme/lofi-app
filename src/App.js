@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { Backgrounds, Audio } from "./Context";
+import Ouside from "./pages/Outside";
+import DataAudio from "./data/audio.json";
+import DataBackgrounds from "./data/background.json";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Backgrounds.Provider value={{ DataBackgrounds }}>
+      <Audio.Provider value={{ DataAudio }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Ouside />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Audio.Provider>
+    </Backgrounds.Provider>
   );
 }
 
