@@ -3,7 +3,6 @@ import { Backgrounds } from "../Context";
 import { useSelector } from "react-redux";
 const StatusBackground = ({ isRain = false, place }) => {
   const status = useSelector((state) => state.status);
-  console.log(status);
   const { DataBackgrounds } = useContext(Backgrounds);
   return (
     <>

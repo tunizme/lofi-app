@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Audio } from "../Context";
 import ReactAudioPlayer from "react-audio-player";
-import Popover from "@mui/material/Popover";
 import { faVolumeDown } from "@fortawesome/free-solid-svg-icons";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -65,11 +64,10 @@ const AudioControl = () => {
     setAnchorEl(false);
   };
 
-  const id = anchorEl ? "simple-popover" : undefined;
-
   const handleSlider = (event, newValue) => {
     setAudioValue(newValue);
   };
+
   return (
     <>
       <div className="backward-icon" onClick={handleBack}>
@@ -85,22 +83,15 @@ const AudioControl = () => {
       <div className="forward-icon" onClick={handleForward}>
         <FontAwesomeIcon icon={faForward} />
       </div>
-      <div className="d-flex" onClick={handleClick}>
-        <FontAwesomeIcon icon={faVolumeDown} />
-      </div>
-      <Popover
-        id={id}
-        open={anchorEl}
-        onClose={handleClose}
-        anchorReference="anchorPosition"
-        anchorPosition={{ top: 89, left: 1159 }}
-        transformOrigin={{
-          vertical: "center",
-          horizontal: "center",
-        }}
-      >
-        <div className="audio-volume-wrapper">
-          <Box sx={{ width: 130 }}>
+      <div className="d-flex position-relative">
+        <FontAwesomeIcon icon={faVolumeDown} onClick={handleClick} />
+        <div
+          onMouseLeave={handleClose}
+          className={`audio-volume-wrapper volume position-absolute d-${
+            anchorEl ? "block" : "none"
+          }`}
+        >
+          <Box sx={{ width: 128 }}>
             <Grid container spacing={2} alignItems="center">
               <Grid item xs>
                 <Slider
@@ -112,7 +103,7 @@ const AudioControl = () => {
             </Grid>
           </Box>
         </div>
-      </Popover>
+      </div>
       <ReactAudioPlayer
         ref={audioRef}
         src={DataAudio[audioIndex].path}

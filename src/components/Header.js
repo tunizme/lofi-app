@@ -72,7 +72,7 @@ const Header = () => {
                   />
                   <label htmlFor="switch"></label>
                 </div>
-                <button className="wrapper-icon d-flex gap-15 align-items-center justify-content-center">
+                <button className="audio-controls wrapper-icon d-flex gap-15 align-items-center justify-content-center">
                   <AudioControl />
                 </button>
                 <Tooltip

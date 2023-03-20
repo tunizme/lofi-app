@@ -68,7 +68,7 @@ const Outside = () => {
             render={() => (
               <PopperWrapper>
                 <p onClick={handleGetOut} className="mb-0">
-                  Calculate money and out
+                  Go outside
                 </p>
               </PopperWrapper>
             )}
