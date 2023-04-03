@@ -46,7 +46,7 @@ const Weather = ({ display }) => {
       .then((res) => setIP(res.data.IPv4))
       .catch(() => setIP(""));
     axios
-      .get("http://api.weatherapi.com/v1/current.json?", {
+      .get("http://api.weatherapi.com/v1/current.json", {
         params: {
           key: "b32faf84565b424ca1e30420231503",
           q: ip,
