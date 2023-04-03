@@ -86,7 +86,7 @@ const AudioControl = () => {
       <div className="d-flex position-relative">
         <FontAwesomeIcon icon={faVolumeDown} onClick={handleClick} />
         <div
-          onMouseLeave={handleClose}
+          onBlur={handleClose}
           className={`audio-volume-wrapper volume position-absolute d-${
             anchorEl ? "block" : "none"
           }`}

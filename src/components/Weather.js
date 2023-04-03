@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { setWeather } from "../Slice/WeatherSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import DiscriptionWeather from "./DiscriptionWeather";
+import DescriptionWeather from "./DescriptionWeather";
 
 const Weather = ({ display }) => {
   const dispatch = useDispatch();
@@ -31,64 +31,63 @@ const Weather = ({ display }) => {
     "Chết không phải là đối lập với sống. Cái chết chính là một phần của cuộc sống.",
     "Chết không phải là đối lập với sống. Cái chết chính là một phần của cuộc sống.",
   ];
+  const [ip, setIP] = useState("");
   useEffect(() => {
     axios
-      .get("https://api.openweathermap.org/data/2.5/weather", {
+      .get("https://geolocation-db.com/json/")
+      .then((res) => setIP(res.data.IPv4))
+      .catch(() => setIP(""));
+    axios
+      .get("http://api.weatherapi.com/v1/current.json?", {
         params: {
-          lat: "16.476289",
-          lon: "107.583396",
-          appid: "64bb3933dad2a344538db14459d47f0c",
-          units: "metric",
+          key: "b32faf84565b424ca1e30420231503",
+          q: ip,
           lang: "vi",
         },
       })
-      .then((res) => {
-        setTimeout(() => setDataWeather(res.data), 1000);
-      })
+      .then((res) => setDataWeather(res.data))
       .catch(() => setDataWeather([]));
-  }, []);
-
+  }, [ip]);
   return (
     <div className={`weather-wrapper d-${display} `}>
       <div className="row">
-        <div className="header-weather d-flex align-items-start justify-content-between">
+        <div className="header-weather d-flex align-items-center justify-content-between">
           <div className="weather-disc d-flex gap-15">
             <div className="d-flex flex-column justify-content-between">
-              <div className="d-flex align-items-end justify-content-start">
+              <div className="d-flex align-items-center justify-content-start">
                 <img
                   src={
-                    dataWeather.weather &&
-                    `http://openweathermap.org/img/wn/${dataWeather.weather[0].icon}@2x.png`
+                    dataWeather.current && dataWeather.current.condition.icon
                   }
                   alt=""
                 />
                 <p className="temp-current mb-0 pt-0">
-                  {dataWeather.main && Math.floor(dataWeather.main.temp)}
+                  {dataWeather.current &&
+                    Math.floor(dataWeather.current.temp_c)}
                   <sup>o</sup>C
                 </p>
               </div>
               <p className="weathert-description mb-0 pt-0 px-3">
-                {dataWeather.weather && dataWeather.weather[0].description}
+                {dataWeather.current && dataWeather.current.condition.text}
               </p>
             </div>
             <div className="sub-weather d-flex flex-column gap-10 justify-content-end">
               <p className="mb-0 pt-0">
                 Cảm giác như:{" "}
-                {dataWeather.main && Math.round(dataWeather.main.feels_like)}
+                {dataWeather.current &&
+                  Math.floor(dataWeather.current.feelslike_c)}
                 <sup>o</sup>C
               </p>
               <p className="mb-0 pt-0">
-                Độ ẩm: {dataWeather.main && dataWeather.main.humidity}%
+                Độ ẩm: {dataWeather.current && dataWeather.current.humidity}%
               </p>
               <p className="mb-0 pt-0">
-                Gió : {dataWeather.wind && dataWeather.wind.speed} m/s
+                Gió : {dataWeather.current && dataWeather.current.wind_kph} km/h
               </p>
             </div>
           </div>
           <div className="weather-time d-flex gap-10">
-            <DiscriptionWeather
-              unixTimestamp={dataWeather.dt && dataWeather.dt}
-            />
+            <DescriptionWeather />
             <div className="close-btn">
               <FontAwesomeIcon icon={faMinus} onClick={handleHideWeather} />
             </div>

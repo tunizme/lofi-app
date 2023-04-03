@@ -315,7 +315,6 @@ input[type="checkbox"] {
 
 .weather-time {
   font-size: 18px;
-  padding-top: 28px;
 }
 
 .weather-time .current-time {
@@ -375,7 +374,56 @@ input[type="checkbox"] {
   left: 48%;
 }
 
-/* .audio-controls .MuiPaper-root {
-  top: 50% !important;
-  left: 50% !important;
-} */
+/* sidebar  */
+.sidebar {
+  margin-right: 60px;
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  right: 0;
+}
+
+.container-action {
+  background-color: hsla(0, 0%, 7%, 0.75);
+  border-radius: 12px;
+}
+
+.action-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 54px;
+  width: 42px;
+  cursor: pointer;
+}
+
+.container-action {
+  margin-top: 20px;
+}
+
+.container-action > div:first-child {
+  margin-top: 20px;
+}
+
+.container-action > div:last-child {
+  margin-bottom: 20px;
+}
+
+.action-hover {
+  display: none;
+}
+
+.action-wrapper:hover > .action {
+  display: none;
+}
+
+.action-wrapper:hover > .action-hover {
+  display: block;
+}
+
+.sidebar .MuiTooltip-tooltip {
+  font-size: 40px !important;
+  font-weight: 500 !important;
+  background-color: var(--color-background) !important;
+}
