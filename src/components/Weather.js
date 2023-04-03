@@ -32,7 +32,15 @@ const Weather = ({ display }) => {
     "Chết không phải là đối lập với sống. Cái chết chính là một phần của cuộc sống.",
   ];
   const [ip, setIP] = useState("");
+  const [hours, setHours] = useState(new Date().getHours());
   useEffect(() => {
+    const intervalId = setInterval(() => {
+      const newHours = new Date().getHours();
+      if (newHours !== hours) {
+        setHours(newHours);
+      }
+    }, 3600000);
+
     axios
       .get("https://geolocation-db.com/json/")
       .then((res) => setIP(res.data.IPv4))
@@ -47,7 +55,8 @@ const Weather = ({ display }) => {
       })
       .then((res) => setDataWeather(res.data))
       .catch(() => setDataWeather([]));
-  }, [ip]);
+    return () => clearInterval(intervalId);
+  }, [hours, ip]);
   return (
     <div className={`weather-wrapper d-${display} `}>
       <div className="row">
