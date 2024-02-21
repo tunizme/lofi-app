@@ -48,7 +48,7 @@ const Weather = ({ display }) => {
     axios
       .get("http://api.weatherapi.com/v1/current.json", {
         params: {
-          key: "d8591a8ab96509c8bff12086028efeca",
+          key: "b91562f570d3438e99c73947231611",
           q: ip,
           lang: "vi",
         },
