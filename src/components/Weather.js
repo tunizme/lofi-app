@@ -48,7 +48,7 @@ const Weather = ({ display }) => {
     axios
       .get("http://api.weatherapi.com/v1/current.json", {
         params: {
-          key: "b32faf84565b424ca1e30420231503",
+          key: "d8591a8ab96509c8bff12086028efeca",
           q: ip,
           lang: "vi",
         },
@@ -91,7 +91,10 @@ const Weather = ({ display }) => {
                 Độ ẩm: {dataWeather.current && dataWeather.current.humidity}%
               </p>
               <p className="mb-0 pt-0">
-                Gió : {dataWeather.current && dataWeather.current.wind_kph} km/h
+                Gió:{" "}
+                {dataWeather.current &&
+                  Math.floor(dataWeather.current.wind_kph)}
+                km/h
               </p>
             </div>
           </div>
