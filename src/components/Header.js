@@ -50,9 +50,9 @@ const Header = () => {
           <div className="wrapper-control d-flex align-items-center justify-content-between">
             <div className="col-4">
               <img
-                src="https://app.lofi.co/static/media/logo.0cbf9e63b4a021661126.gif"
+                src="./assets/images/music_icon.png"
                 alt="logo"
-                height={100}
+                height={50}
               />
             </div>
             <div className="col-8">
